@@ -96,9 +96,9 @@ function renderDS(arrNV = dsnv.arrDS) {
 		    <td>${arrNV[i].tongLuong()}</td>
 		    <td>${arrNV[i].xepLoai()}</td>
 		    <td>
-            <button class="btn btn-success" data-toggle="modal"
+            <button class="btn btn-success btn__margin" data-toggle="modal"
             data-target="#myModal" onclick = editNV('${dsnv.arrDS[i].taiKhoan}')>Edit</button>
-            <button class="btn btn-danger" onclick = deleteNV('${dsnv.arrDS[i].taiKhoan}')>Delete</button></td>
+            <button class="btn btn-danger btn__margin" onclick = deleteNV('${dsnv.arrDS[i].taiKhoan}')>Delete</button></td>
 		</tr>
         `
     }

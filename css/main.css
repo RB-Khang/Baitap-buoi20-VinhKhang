@@ -17,6 +17,10 @@
 }
 
 
+.btn__margin{
+  margin: 4px ;
+}
+
 .myCardHeader, .myCardFooter{
 	background-color: transparent;       
 }
