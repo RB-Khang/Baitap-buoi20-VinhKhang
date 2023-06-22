@@ -108,6 +108,10 @@ function renderDS(arrNV = dsnv.arrDS) {
 
 function editNV(maNV) {
     var index = dsnv.timNV(maNV)
+    var thongBao = document.getElementsByClassName('sp-thongbao')
+    for (var i = 0; i < thongBao.length; i++) {
+        thongBao[i].style.display = 'none'
+    }
     getID('tknv').value = dsnv.arrDS[index].taiKhoan
     getID('tknv').readOnly = true
     getID('tbTKNV').style.display = 'none'
@@ -220,8 +224,9 @@ function testGioLam() {
 
 
 btnUpdate.onclick = function () {
+    
 
-    var testTk = testTaiKhoan()
+    // var testTk = testTaiKhoan()
     var testCV = testChucVu()
     var tstEmail = testEmail()
     var nameTest = testTen()
@@ -232,7 +237,7 @@ btnUpdate.onclick = function () {
 
     // console.log(testCV, tstEmail, nameTest, testGL, testLCB, testNL, testPassword)
 
-    if (testTk === true && nameTest === true && tstEmail === true && testPassword === true && testNL === true && testLCB === true && testCV === true && testGL === true) {
+    if ( nameTest === true && tstEmail === true && testPassword === true && testNL === true && testLCB === true && testCV === true && testGL === true) {
         var nhanVien2 = getThongTinNV()
         dsnv.editNV(nhanVien2)
         setLocal()
