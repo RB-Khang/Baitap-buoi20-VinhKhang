@@ -14,14 +14,13 @@ renderDS()
 
 
 function getThongTinNV() {
-    var taiKhoan = getID('tknv').value.replace(/\s/g,'').trim()
-    console.log(taiKhoan)
+    var taiKhoan = getID('tknv').value.replace(/\s/g, '').trim()
     var name = getID('name').value
     var email = getID('email').value
     var pw = getID('password').value
     var ngayLam = getID('datepicker').value
-    var luongCB = getID('luongCB').value * 1
-    var gioLam = getID('gioLam').value * 1
+    var luongCB = getID('luongCB').value.replace(/\s/g, '') * 1
+    var gioLam = getID('gioLam').value.replace(/\s/g, '') * 1
     var chucVu = getID('chucvu').value
 
     var nhanVien = new NhanVien(taiKhoan, name, email, pw, ngayLam, luongCB, gioLam, chucVu)
@@ -41,7 +40,7 @@ btnThemND.onclick = function () {
     var testPassword = testPW()
 
 
-    console.log(testCV, tstEmail, nameTest, testGL, testLCB, testNL, testPassword)
+    // console.log(testCV, tstEmail, nameTest, testGL, testLCB, testNL, testPassword)
 
 
     if (testTk === true && nameTest === true && tstEmail === true && testPassword === true && testNL === true && testLCB === true && testCV === true && testGL === true) {
@@ -139,7 +138,7 @@ function testTaiKhoan() {
     if (tkTest === true && getID('tknv').readOnly === false) {
         var trungTK = true
         for (var i = 0; i < dsnv.arrDS.length; i++) {
-            if (getID('tknv').value.replace(/\s/g,'').trim() === dsnv.arrDS[i].taiKhoan) {
+            if (getID('tknv').value.replace(/\s/g, '').trim() === dsnv.arrDS[i].taiKhoan) {
                 getID('tbTKNV').style.display = 'inline-block'
                 getID('tbTKNV').innerHTML = 'Tài khoản bị trùng'
                 trungTK = false
@@ -189,7 +188,7 @@ function testNgayLam() {
 }
 function testLuongCB() {
     var luongCBTest = lengthTest('luongCB', 1, undefined, 'tbLuongCB', 'Không để trống')
-    var luongtest = getID('luongCB').value * 1
+    var luongtest = getID('luongCB').value.replace(/\s/g, '') * 1
     if (luongCBTest === true && Number.isInteger(luongtest) === true) {
         if (luongtest < 1000000 || luongtest > 20000000) {
             getID('tbLuongCB').style.display = 'inline-block'
@@ -199,6 +198,10 @@ function testLuongCB() {
             getID('tbLuongCB').style.display = 'none'
             return true
         }
+    } else {
+        getID('tbLuongCB').style.display = 'inline-block'
+        getID('tbLuongCB').innerHTML = 'Vui lòng nhập số'
+        return false
     }
 }
 function testChucVu() {
@@ -213,7 +216,7 @@ function testChucVu() {
 }
 function testGioLam() {
     var gioLamTest = lengthTest('gioLam', 1, undefined, 'tbGiolam', 'Không để trống')
-    var gltest = getID('gioLam').value * 1
+    var gltest = getID('gioLam').value.replace(/\s/g, '') * 1
     if (gioLamTest === true && Number.isInteger(gltest) === true) {
         if (gltest < 80 || gltest > 200) {
             getID('tbGiolam').style.display = 'inline-block'
@@ -223,14 +226,18 @@ function testGioLam() {
             getID('tbGiolam').style.display = 'none'
             return true
         }
-    } else return false
+    } else {
+        getID('tbGiolam').style.display = 'inline-block'
+        getID('tbGiolam').innerHTML = 'Vui lòng nhập số'
+        return false
+    }
 }
 
 
 
 
 btnUpdate.onclick = function () {
-    
+
 
     // var testTk = testTaiKhoan()
     var testCV = testChucVu()
@@ -241,9 +248,9 @@ btnUpdate.onclick = function () {
     var testNL = testNgayLam()
     var testPassword = testPW()
 
-    console.log(testCV, tstEmail, nameTest, testGL, testLCB, testNL, testPassword)
+    // console.log(testCV, tstEmail, nameTest, testGL, testLCB, testNL, testPassword)
 
-    if ( nameTest === true && tstEmail === true && testPassword === true && testNL === true && testLCB === true && testCV === true && testGL === true) {
+    if (nameTest === true && tstEmail === true && testPassword === true && testNL === true && testLCB === true && testCV === true && testGL === true) {
         var nhanVien2 = getThongTinNV()
         dsnv.editNV(nhanVien2)
         setLocal()
