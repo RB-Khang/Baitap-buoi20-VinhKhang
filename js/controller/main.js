@@ -14,7 +14,8 @@ renderDS()
 
 
 function getThongTinNV() {
-    var taiKhoan = getID('tknv').value
+    var taiKhoan = getID('tknv').value.replace(/\s/g,'').trim()
+    console.log(taiKhoan)
     var name = getID('name').value
     var email = getID('email').value
     var pw = getID('password').value
@@ -39,11 +40,16 @@ btnThemND.onclick = function () {
     var testNL = testNgayLam()
     var testPassword = testPW()
 
+
+    console.log(testCV, tstEmail, nameTest, testGL, testLCB, testNL, testPassword)
+
+
     if (testTk === true && nameTest === true && tstEmail === true && testPassword === true && testNL === true && testLCB === true && testCV === true && testGL === true) {
         var nhanVien = getThongTinNV()
         dsnv.themNV(nhanVien)
         setLocal()
         renderDS()
+        getID('tknv').readOnly = true
     }
 }
 
@@ -133,7 +139,7 @@ function testTaiKhoan() {
     if (tkTest === true && getID('tknv').readOnly === false) {
         var trungTK = true
         for (var i = 0; i < dsnv.arrDS.length; i++) {
-            if (getID('tknv').value === dsnv.arrDS[i].taiKhoan) {
+            if (getID('tknv').value.replace(/\s/g,'').trim() === dsnv.arrDS[i].taiKhoan) {
                 getID('tbTKNV').style.display = 'inline-block'
                 getID('tbTKNV').innerHTML = 'Tài khoản bị trùng'
                 trungTK = false
@@ -235,7 +241,7 @@ btnUpdate.onclick = function () {
     var testNL = testNgayLam()
     var testPassword = testPW()
 
-    // console.log(testCV, tstEmail, nameTest, testGL, testLCB, testNL, testPassword)
+    console.log(testCV, tstEmail, nameTest, testGL, testLCB, testNL, testPassword)
 
     if ( nameTest === true && tstEmail === true && testPassword === true && testNL === true && testLCB === true && testCV === true && testGL === true) {
         var nhanVien2 = getThongTinNV()
