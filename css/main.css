@@ -19,6 +19,8 @@
 
 .btn__margin{
   margin: 4px ;
+  width: 100%;
+  text-align: center;
 }
 
 .myCardHeader, .myCardFooter{
